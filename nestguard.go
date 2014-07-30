@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 )
@@ -32,6 +33,12 @@ func main() {
 
 	warnings := noWarnings()
 	reqs := noRequirements()
+
+	root := "."
+	if len(os.Args) > 1 {
+		root = os.Args[1]
+		fmt.Printf("Using root %s\n", root)
+	}
 
 	// PIP
 	pipReqs, pipWarnings := readMultipleRequirements("requirements.txt", "requirements-production.txt")
